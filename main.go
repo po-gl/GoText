@@ -169,6 +169,7 @@ func main() {
 	var keyerr error
 
 	calls := 0
+    loop:
 	for {
 		src.Erase()
 		calls += 1
@@ -184,6 +185,9 @@ func main() {
 		switch state.status {
 		case NORMAL:
 			keyerr = HandleNormal(state)
+            if state.key == 113 { // q
+                break loop
+            }
 		case INSERT:
 			keyerr = HandleInsert(state)
 		case VISUAL:
